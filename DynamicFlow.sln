@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicTester", "DynamicTester\DynamicTester.csproj", "{A6692D08-7245-4472-AD9F-9DA0E08F417F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{9FA497BA-89C7-46E0-99E9-2D92EC2528DB}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6692D08-7245-4472-AD9F-9DA0E08F417F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6692D08-7245-4472-AD9F-9DA0E08F417F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6692D08-7245-4472-AD9F-9DA0E08F417F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6692D08-7245-4472-AD9F-9DA0E08F417F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FA497BA-89C7-46E0-99E9-2D92EC2528DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FA497BA-89C7-46E0-99E9-2D92EC2528DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FA497BA-89C7-46E0-99E9-2D92EC2528DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FA497BA-89C7-46E0-99E9-2D92EC2528DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
