@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
@@ -10,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Xml.Serialization;
 
-namespace DynamicTester.Helpers
+namespace DynamicBuilder.Helpers
 {
     public static class ConverterHelper
     {

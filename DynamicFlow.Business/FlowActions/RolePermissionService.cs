@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicTester.FlowActions
+namespace DynamicFlow.Business
 {
     public class RolePermissionService
     {

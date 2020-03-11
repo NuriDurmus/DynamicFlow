@@ -1,4 +1,4 @@
-﻿using DynamicTester.Helpers;
+﻿using DynamicBuilder.Helpers;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace DynamicTester.Business
+namespace DynamicBuilder.Business
 {
     public class ConditionHelper
     {
