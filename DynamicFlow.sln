@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicTester", "DynamicTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{9FA497BA-89C7-46E0-99E9-2D92EC2528DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicBuilder", "DynamicBuilder\DynamicBuilder.csproj", "{DD240C7A-E109-42BE-9AAF-978615CA9CE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicBuilder", "DynamicBuilder\DynamicBuilder.csproj", "{DD240C7A-E109-42BE-9AAF-978615CA9CE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicFlow.Business", "DynamicFlow.Business\DynamicFlow.Business.csproj", "{A23542DA-312F-44F3-BFF9-C877A6920BF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicFlow.Business", "DynamicFlow.Business\DynamicFlow.Business.csproj", "{A23542DA-312F-44F3-BFF9-C877A6920BF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicFlow.Test", "DynamicFlow.Test\DynamicFlow.Test.csproj", "{81F78411-5ECA-4A90-878E-266FF4B464F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A23542DA-312F-44F3-BFF9-C877A6920BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A23542DA-312F-44F3-BFF9-C877A6920BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A23542DA-312F-44F3-BFF9-C877A6920BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F78411-5ECA-4A90-878E-266FF4B464F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F78411-5ECA-4A90-878E-266FF4B464F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F78411-5ECA-4A90-878E-266FF4B464F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F78411-5ECA-4A90-878E-266FF4B464F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

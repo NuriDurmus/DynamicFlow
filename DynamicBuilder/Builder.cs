@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Persistence.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -12,7 +13,7 @@ namespace DynamicBuilder
 {
     public static class Builder
     {
-        public static void RunCondition(MasterConditionSet masterConditionSet, JObject data)
+        public static bool RunCondition(MasterConditionSet masterConditionSet, JObject data)
         {
             Dictionary<string, MethodInfo> methodInfos = new Dictionary<string, MethodInfo>();
             Dictionary<string, object> classes = new Dictionary<string, object>();
@@ -57,6 +58,7 @@ namespace DynamicBuilder
                 }
             }
             Console.WriteLine("main result:" + mainConditionResult);
+            return mainConditionResult;
         }
 
         public async static void RunAction(MasterConditionSet masterConditionSet)
@@ -68,6 +70,7 @@ namespace DynamicBuilder
             foreach (var conditionSet in masterConditionSet.ConditionActions.OrderBy(i => i.OrderId))
             {
                 var result = true;
+                //https://www.oreilly.com/library/view/c-cookbook/0596003390/ch05s06.html
                 //TODO: assembly ile ilgili optimizasyon yapılacak.
                 Assembly assembly = Assembly.LoadFrom("DynamicFlow.Business.dll");
                 var className = conditionSet.ActionName.GetClassName();
@@ -88,9 +91,13 @@ namespace DynamicBuilder
                         classes.Add(className, obj);
                     }
                 }
-                var parameters = new List<object>();
-                parameters.AddRange(conditionSet.ActionParameterValues.Split(',').ToList());
-                parameters.Add(true);
+                var parameters = new HashSet<object>();
+                List<string> list = conditionSet.ActionParameterValues.Split(',').ToList();
+                for (int i = 0; i < list.Count; i++)
+                {
+                    string item = list[i];
+                    parameters.Add(TypeDescriptor.GetConverter(methodInfo.GetParameters()[i].ParameterType).ConvertFromString(item));
+                }
                 try
                 {
                     //TODO: exception yakalama hatası çözülecek.
@@ -110,7 +117,7 @@ namespace DynamicBuilder
                 catch (Exception ex)
                 {
                     result = false;
-                    Console.WriteLine("custom mesaj:"+ex.Message);
+                    Console.WriteLine("custom mesaj:" + ex.Message);
                     break;
                 }
             }
