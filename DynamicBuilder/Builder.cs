@@ -58,6 +58,10 @@ namespace DynamicBuilder
                 }
             }
             Console.WriteLine("main result:" + mainConditionResult);
+            if (mainConditionResult)
+            {
+                RunAction(masterConditionSet);
+            }
             return mainConditionResult;
         }
 
@@ -67,12 +71,12 @@ namespace DynamicBuilder
             Dictionary<string, object> classes = new Dictionary<string, object>();
             var mainConditionResult = false;
             Task<object> methodMainResult = null;
+            //https://www.oreilly.com/library/view/c-cookbook/0596003390/ch05s06.html
+            //TODO: assembly ile ilgili optimizasyon yapılacak. Başka yerdende load edebilir.
+            Assembly assembly = Assembly.LoadFrom("DynamicFlow.Business.dll");
             foreach (var conditionSet in masterConditionSet.ConditionActions.OrderBy(i => i.OrderId))
             {
                 var result = true;
-                //https://www.oreilly.com/library/view/c-cookbook/0596003390/ch05s06.html
-                //TODO: assembly ile ilgili optimizasyon yapılacak.
-                Assembly assembly = Assembly.LoadFrom("DynamicFlow.Business.dll");
                 var className = conditionSet.ActionName.GetClassName();
                 var methodName = conditionSet.ActionName.GetMethodName();
                 MethodInfo methodInfo = null;
@@ -112,7 +116,7 @@ namespace DynamicBuilder
                     //    result = false;
                     //    break;
                     //}
-                    Console.WriteLine("tamamlandı");
+                    Console.WriteLine("{0} metodu çalıştırması tamamlandı", methodInfo.Name);
                 }
                 catch (Exception ex)
                 {

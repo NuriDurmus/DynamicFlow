@@ -5,15 +5,20 @@ using System;
 using System.Linq;
 using Xunit;
 using DynamicBuilder;
+using Xunit.Abstractions;
+using System.Diagnostics;
 
 namespace DynamicFlow.Test
 {
     public class ConditionTest
     {
+        private readonly ITestOutputHelper output;
+
         public JObject data;
         public MasterConditionSet masterConditionSet;
-        public ConditionTest()
+        public ConditionTest(ITestOutputHelper output)
         {
+            this.output = output;
             GetData(out masterConditionSet, out data);
         }
         [Fact]
@@ -39,10 +44,11 @@ namespace DynamicFlow.Test
             data["Age"] = 19;
             data["PersonName"] = "Nuri";
             Assert.True(Builder.RunCondition(masterConditionSet, data));
+            output.WriteLine("tamamlandı");
         }
 
         //TODO:Metot parametreleri (bigger gibi kontrol metotları) test edilecek
-        private void GetData(out MasterConditionSet masterConditionSet,out JObject data)
+        private void GetData(out MasterConditionSet masterConditionSet, out JObject data)
         {
             var context = new ConditionHandlerContext();
             masterConditionSet = context.MasterConditionSet.Include(i => i.ConditionActions).Include(i => i.ConditionSet).ThenInclude(i => i.Conditions).FirstOrDefault();

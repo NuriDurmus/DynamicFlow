@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -15,6 +15,10 @@
     <ProjectReference Include="..\DynamicBuilder\DynamicBuilder.csproj" />
     <ProjectReference Include="..\DynamicFlow.Business\DynamicFlow.Business.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BenchmarkDotNet.Artifacts\" />
   </ItemGroup>
 
 </Project>
