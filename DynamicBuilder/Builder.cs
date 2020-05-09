@@ -95,7 +95,7 @@ namespace DynamicBuilder
                         classes.Add(className, obj);
                     }
                 }
-                var parameters = new HashSet<object>();
+                var parameters = new List<object>();
                 List<string> list = conditionSet.ActionParameterValues.Split(',').ToList();
                 for (int i = 0; i < list.Count; i++)
                 {
@@ -105,18 +105,14 @@ namespace DynamicBuilder
                 try
                 {
                     //TODO: exception yakalama hatası çözülecek.
-                    Task task = Task.Run(() =>
+                    Task<object> task = Task.Run(() =>
                     {
-                        methodInfo.Invoke(classes[className], parameters.ToArray());
+                       return methodInfo.Invoke(classes[className], parameters.ToArray());
                     });
-                    task.GetAwaiter().GetResult();
-                    //methodMainResult = (Task<object>)methodInfo.Invoke(classes[className], parameters.ToArray());
-                    //if (!methodMainResult.GetAwaiter().IsCompleted)
-                    //{
-                    //    result = false;
-                    //    break;
-                    //}
-                    Console.WriteLine("{0} metodu çalıştırması tamamlandı", methodInfo.Name);
+                    var taskResult=task.GetAwaiter().GetResult();
+                    var resultProperty = taskResult?.GetType().GetProperty("Result");
+                    var value= resultProperty?.GetValue(taskResult);
+                    Console.WriteLine("{0} metodu çalıştırması tamamlandı. Result: {1}", methodInfo.Name,value.ToCustomString());
                 }
                 catch (Exception ex)
                 {
