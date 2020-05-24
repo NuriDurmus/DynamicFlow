@@ -74,6 +74,7 @@ namespace DynamicBuilder
             //https://www.oreilly.com/library/view/c-cookbook/0596003390/ch05s06.html
             //TODO: assembly ile ilgili optimizasyon yapılacak. Başka yerdende load edebilir.
             Assembly assembly = Assembly.LoadFrom("DynamicFlow.Business.dll");
+            List<Tuple<Task<object>, MethodInfo>> methodInvokes = new List<Tuple<Task<object>, MethodInfo>>();
             foreach (var conditionSet in masterConditionSet.ConditionActions.OrderBy(i => i.OrderId))
             {
                 var result = true;
@@ -109,10 +110,7 @@ namespace DynamicBuilder
                     {
                        return methodInfo.Invoke(classes[className], parameters.ToArray());
                     });
-                    var taskResult=task.GetAwaiter().GetResult();
-                    var resultProperty = taskResult?.GetType().GetProperty("Result");
-                    var value= resultProperty?.GetValue(taskResult);
-                    Console.WriteLine("{0} metodu çalıştırması tamamlandı. Result: {1}", methodInfo.Name,value.ToCustomString());
+                    methodInvokes.Add(new Tuple<Task<object>,MethodInfo>(task,methodInfo));
                 }
                 catch (Exception ex)
                 {
@@ -121,6 +119,8 @@ namespace DynamicBuilder
                     break;
                 }
             }
+            Invoker invoker = new Invoker();
+            invoker.Invoke(methodInvokes);
         }
     }
 }
